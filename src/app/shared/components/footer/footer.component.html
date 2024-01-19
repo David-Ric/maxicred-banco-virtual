@@ -1,0 +1,27 @@
+<footer class="footer-desk">
+  <div class="container-footer">
+    <h4>Todos os direitos reservados. CNPJ 03.298.453/0001-34. MAXICON SISTEMAS LTDA</h4>
+  </div>
+  <div class="footer-mobile">
+    <div class="botoes-nav-inferior" (click)="forHome()" [class.botoes-nav-inferior-active]="isCurrentRoute('/home')">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon><br>
+      <span>Home</span>
+    </div>
+    <div *ngIf="user" class="botoes-nav-inferior" (click)="forFinanceiro()" [class.botoes-nav-inferior-active]="isCurrentRoute('/financeiro')">
+      <mat-icon aria-hidden="false" aria-label="Ícone de cédula de dinheiro">account_balance_wallet</mat-icon><br>
+
+      <span>Financeiro</span>
+    </div>
+    <!-- <div *ngIf="user" class="botoes-nav-inferior" (click)="forClassificacao()" [class.botoes-nav-inferior-active]="isCurrentRoute('/classificacao')">
+      <mat-icon aria-hidden="false" aria-label="Ícone de moeda">monetization_on</mat-icon><br>
+
+
+      <span>Pix</span>
+    </div> -->
+
+    <!-- <div class="botoes-nav-inferior" (click)="forPesagem()" [class.botoes-nav-inferior-active]="isCurrentRoute('/pesagem')">
+      <mat-icon aria-hidden="false" aria-label="Ícone de pesagem">scale</mat-icon><br>
+      <span>Pesagem</span>
+    </div> -->
+  </div>
+</footer>

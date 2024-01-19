@@ -1,0 +1,120 @@
+
+<app-nav-bar>
+  <div class="containner-app">
+    <mat-toolbar class="card-title">
+      <span>Meu Financeiro</span>
+    </mat-toolbar>
+    <section class="form_card">
+      <section class="form_card_content">
+        <div  class="div-saldo">
+          <div class="d-flex">
+            <h1 class="text-conta">Saldo em conta: </h1>
+
+          <h1 *ngIf="contaCorrente && visualizar" class="valor-conta">
+            {{ contaCorrente ?
+              formatarValorConta(contaCorrente.saldo, contaCorrente.moeda || 'BRL') :
+              '0,00' }}
+          </h1>
+            <h1 *ngIf="!visualizar" class="valor-conta">******</h1>
+          </div>
+
+          <div class="div-olho" [class.olho-ab]="visualizar" [class.olho-f]="!visualizar" (click)="inverterVisualizacao()"></div>
+
+        </div>
+        <mat-accordion *ngIf="emprestimos.length>0">
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title  class="painel-title">
+                <div class="d-flex">
+                  <h3>Emprestimo realizado em: {{ formatarData(emprestimos[0]?.dataEmprestimo) }}</h3>
+                </div>
+                <div class="d-flex">
+                  <h3>No valor de: </h3> <div class="valor-data"><h3 class="valor-conta">
+                    {{ emprestimos && emprestimos.length > 0 ?
+                      formatarValorConta(emprestimos[0].valorPedido, emprestimos[0].moeda || '') :
+                      '0,00' }}
+                  </h3></div>
+                </div>
+
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <div class="d-flex title-parc">
+              <h2>Parcelado em {{emprestimos[0]?.totalParcelas}} x </h2>
+            </div>
+            <div>
+              <mat-tab-group (selectedTabChange)="onTabChange($event)">
+                <mat-tab label="Parcelar Abertas">
+                  <div *ngFor="let parcela of parcelas" class="card-parcela">
+                    <div>
+                      <h3>vencimento em: {{ formatarData(parcela.dataVencimento) }}  </h3>
+                      <h3>no valor de: <b>R$ {{ parcela.valorComJuros / 100 | number:'1.2-2' }}</b></h3>
+
+                    </div>
+                    <div>
+                    <button mat-fab extended color="primary" (click)="atualizarStatus(parcela.id)">
+                        Pagar
+                      </button>
+                    </div>
+
+                  </div>
+                  <mat-paginator class="pagination-comp"
+                    [pageSizeOptions]="[4, 10, 15]"
+                    showFirstLastButtons
+                    [pageIndex]="pageIndex"
+                    [pageSize]="pageSize"
+                    [length]="(parcelas$ | async)?.totalItems || 0"
+                    (page)="getParcelas($event.pageIndex + 1, $event.pageSize)"
+                    aria-label="Select page of entradas">
+              </mat-paginator>
+                </mat-tab>
+                <mat-tab label="Parcelas Pagas">
+                  <div *ngFor="let parcela of parcelas" class="card-parcela parcela-paga">
+                  <div>
+                    <h3>vencimento em: {{ formatarData(parcela.dataVencimento) }}  </h3>
+                    <h3>no valor de: <b>R$ {{ parcela.valorComJuros / 100 | number:'1.2-2' }}</b></h3>
+                    <h3>Pago em: {{ formatarData(parcela.dataPagamento) }} </h3>
+                  </div>
+                  <div>
+
+                  </div>
+
+                </div>
+                <mat-paginator class="pagination-comp"
+                  [pageSizeOptions]="[4, 10, 15]"
+                  showFirstLastButtons
+                  [pageIndex]="pageIndex"
+                  [pageSize]="pageSize"
+                  [length]="(parcelas$ | async)?.totalItems || 0"
+                  (page)="getParcelas($event.pageIndex + 1, $event.pageSize)"
+                  aria-label="Select page of entradas">
+            </mat-paginator> </mat-tab>
+              </mat-tab-group>
+
+            </div>
+
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+      </section>
+    </section>
+
+
+    <div class="separador"></div>
+    <div class="separador"></div>
+    <div *ngIf="(loading)">
+      <app-loading-modal></app-loading-modal>
+    </div>
+
+    <div *ngIf="showModal">
+      <app-modal-confirm [message]="modalMessage" [url]="modalUrl" (closeModal)="onCloseModal()"></app-modal-confirm>
+    </div>
+
+
+  </div>
+  <app-footer></app-footer>
+</app-nav-bar>

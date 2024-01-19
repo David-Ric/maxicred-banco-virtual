@@ -1,0 +1,129 @@
+<app-nav-bar>
+  <div class="containner-app">
+    <mat-toolbar class="card-title">
+      <span>Cadastro de Cliente</span>
+    </mat-toolbar>
+    <form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+      <section class="form_card">
+        <section class="form_card_content">
+          <div class="dvisor"></div>
+          <section class="div-input">
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="Email" required />
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" placeholder="Username" required />
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input">
+              <mat-label>Nome Completo</mat-label>
+              <input matInput formControlName="nomeCompleto" placeholder="Nome Completo" required />
+            </mat-form-field>
+          </section>
+
+          <section class="div-input">
+
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input form-dados-sec form-cpf">
+
+              <mat-label>Cpf</mat-label>
+              <input matInput formControlName="cpf_cnpj"
+                     placeholder="Cpf"
+                     appCpfFormat
+                     maxlength="14"
+                     required
+                     (blur)="validarCpfAoSair()"
+                     (focus)="onFocus()" />
+                     <div class="valida-cpf" *ngIf="userForm.get('cpf_cnpj')?.touched && userForm.get('cpf_cnpj')?.hasError('cpfInvalido')">
+                      CPF inválido
+                    </div>
+
+            </mat-form-field>
+
+            <!-- <mat-form-field color="accent" appearance="outline" class="todo_form_input form-dados-sec">
+              <mat-label>Cpf</mat-label>
+              <input matInput formControlName="cpf_cnpj" placeholder="Cpf" appCpfFormat maxlength="14" required />
+            </mat-form-field> -->
+
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input form-dados-sec">
+              <mat-label>Telefone</mat-label>
+              <input matInput formControlName="telefone" placeholder="Telefone" appPhoneFormat maxlength="15" required />
+            </mat-form-field>
+
+
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input form-dados-sec">
+              <mat-label>Profissao</mat-label>
+              <input matInput formControlName="profissao" placeholder="Profissao" required />
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="outline" class="todo_form_input form-dados-sec">
+              <mat-label>Renda Mensal</mat-label>
+              <!-- <input matInput formControlName="rendaMensal" placeholder="Renda Mensal" required /> -->
+              <input matInput class="custom-input" type="text" id="valorEmprestimo" [value]="formatarMoeda(cliente.rendaMensal)" (input)="formatarInput($event)">
+
+            </mat-form-field>
+          </section>
+
+          <section class="div-interna">
+            <label class="label-interna" for="">Endereço</label>
+            <section class="div-input">
+              <mat-form-field color="accent" appearance="outline" class="todo_form_input inpt_lograd">
+                <mat-label>Logradouro</mat-label>
+                <input matInput formControlName="logradouro" placeholder="Logradouro" required />
+              </mat-form-field>
+              <mat-form-field color="accent" appearance="outline" class="todo_form_input">
+                <mat-label>CEP</mat-label>
+                <input matInput formControlName="cep" placeholder="CEP" appCepFormat maxlength="10" required />
+                <button mat-icon-button type="button" (click)="pesquisarCEP()" matSuffix>
+                  <mat-icon>search</mat-icon>
+                </button>
+              </mat-form-field>
+
+            </section>
+
+            <section class="div-input">
+              <mat-form-field color="accent" appearance="outline" class="todo_form_input">
+                <mat-label>Bairro</mat-label>
+                <input matInput formControlName="bairro" placeholder="Bairro" required />
+              </mat-form-field>
+              <mat-form-field color="accent" appearance="outline" class="todo_form_input">
+                <mat-label>Cidade</mat-label>
+                <input matInput formControlName="cidade" placeholder="Cidade" required />
+              </mat-form-field>
+
+              <mat-form-field color="accent" appearance="outline" class="todo_form_input inpt-UF">
+                <mat-label>UF</mat-label>
+                <input matInput formControlName="uf" placeholder="UF" required />
+              </mat-form-field>
+            </section>
+
+          </section>
+
+          <section class="div-input">
+          </section>
+        </section>
+
+        <div class="todo_form_actions">
+          <button mat-raised-button class="btn-save" type="submit" (click)="onUpdate()">
+            <mat-icon>save</mat-icon>Salvar
+          </button>
+          <button mat-raised-button type="button" class="btn-cancel" (click)="onCancel()">
+            <mat-icon>cancel</mat-icon>Cancelar
+          </button>
+        </div>
+      </section>
+    </form>
+    <div class="separador"></div>
+    <div class="separador"></div>
+    <div *ngIf="(loading)">
+      <app-loading-modal></app-loading-modal>
+    </div>
+    <div *ngIf="showModal">
+      <app-modal-confirm [message]="modalMessage" [url]="modalUrl" (closeModal)="onCloseModal()"></app-modal-confirm>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</app-nav-bar>

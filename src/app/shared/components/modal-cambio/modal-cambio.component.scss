@@ -1,0 +1,36 @@
+.loading-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Faz o modal semi-transparente */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 7px;
+  text-align: center;
+  width: 50%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+  img{
+    width: 200px;
+  }
+  label{
+    margin-left: 10px;
+  }
+  #check {
+    transform: scale(1.2);
+  }
+
+
+  #check:checked + label {
+    color: blue;
+  }
+}
+

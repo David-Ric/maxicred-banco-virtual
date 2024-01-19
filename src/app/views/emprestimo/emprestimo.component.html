@@ -1,0 +1,100 @@
+
+<app-nav-bar>
+  <div class="containner-app">
+    <mat-toolbar class="card-title">
+      <span>Meus Emprestimos</span>
+    </mat-toolbar>
+    <section class="form_card">
+      <section *ngIf="emprestimo" class="form_card_content">
+        <h1 class="text-object">Qual o objetivo do seu empréstimo?</h1>
+        <section class="menu-emp">
+          <div class="example-button-container  btn-actions">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="iniciarEmprestimoNacional()">
+              <mat-icon>home</mat-icon>
+            </button>
+            <h1 class="text-button">Contas da casa</h1>
+          </div>
+          <div class="example-button-container  btn-actions">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="iniciarEmprestimoNacional()">
+              <mat-icon>build</mat-icon>
+            </button>
+            <h1 class="text-button">Reformas ou consertos</h1>
+          </div>
+          <div class="example-button-container  btn-actions">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="iniciarEmprestimoInternacional()">
+              <mat-icon>business</mat-icon>
+            </button>
+            <h1 class="text-button">Investir no meu negócio</h1>
+          </div>
+          <div class="example-button-container  btn-actions">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="iniciarEmprestimoInternacional()">
+              <mat-icon>flight</mat-icon>
+            </button>
+            <h1 class="text-button">Viagem</h1>
+          </div>
+        </section>
+
+        </section>
+        <section *ngIf="emprestimoInic" class="form_card_content simul">
+          <h1 class="text-object">Simular emprestimo de</h1>
+
+          <div *ngIf="moedaInternacional" class="tipo-moeda-select">
+            <h3>Quero receber em:</h3>
+            <select id="selectMoeda" [(ngModel)]="moedaEscolhida" (change)="atualizarCotacao()">
+              <option value="BRL">Real</option>
+              <option value="USD">Dólar</option>
+              <option value="EUR">Euro</option>
+            </select>
+          </div>
+
+
+          <div *ngIf="moedaEscolhida !== 'BRL'" class="text-valor-default">
+            <input matInput class="custom-input" type="text" id="valorEmprestimoMoeda" [value]="formatarMoedaEstrangeira(valorInicial)"  (input)="atualizarParcelasEstrageira(); formatarMoedaMoedaEstrangeira($event)">
+            <mat-icon>create</mat-icon>
+          </div>
+
+          <div *ngIf="moedaEscolhida === 'BRL'" class="text-valor-default">
+            <input matInput class="custom-input" type="text" id="valorEmprestimo" [value]="formatarMoeda(valorInicial)" (input)="atualizarParcelas(); formatarInput($event)">
+            <mat-icon>create</mat-icon>
+          </div>
+
+          <div class="div-parcela">
+            <h1>Escolha o número de parcelas:</h1>
+            <select id="selectParcelas" [(ngModel)]="numeroParcelas" (change)="onNumeroParcelasChange()">
+              <option *ngFor="let parcela of listaParcelas; let i = index" [value]="i + 1" [selected]="i + 1 === numeroParcelas">
+                {{ parcela }}
+              </option>
+            </select>
+            <h1>Juros de {{ taxaJurosMensal * 100 | number:'1.2-2' }}% ao mês</h1>
+
+            <h1 *ngIf="moedaEscolhida !== 'BRL'">Cotação: R$ {{ valorCotacao.toFixed(2) }}</h1>
+            <h1 *ngIf="moedaEscolhida !== 'BRL'">Valor do Empréstimo em Reais: {{ (valorInicial * valorCotacao).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</h1>
+
+         </div>
+          <div class="div-btn">
+            <button mat-fab extended color="warn" class="btn-voltar" (click)="voltarTipo()">
+              Voltar
+            </button>
+            <button mat-fab extended color="primary" class="btn-finalizar" (click)="finalizar()">
+              Finalizar
+            </button>
+          </div>
+        </section>
+      </section>
+
+    <div class="separador"></div>
+    <div class="separador"></div>
+    <div *ngIf="(loading)">
+      <app-loading-modal></app-loading-modal>
+    </div>
+    <div *ngIf="modalCambio">
+      <app-modal-cambio (closeModalCambio)="onCloseModalCambio()"></app-modal-cambio>
+    </div>
+    <div *ngIf="showModal">
+      <app-modal-confirm [message]="modalMessage" [url]="modalUrl" (closeModal)="onCloseModal()"></app-modal-confirm>
+    </div>
+
+
+  </div>
+  <app-footer></app-footer>
+</app-nav-bar>

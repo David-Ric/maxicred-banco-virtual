@@ -1,0 +1,186 @@
+.container-login{
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  .div-card{
+    width: 80%;
+    background-image: url('../../../assets/img/fundo-web.png');
+    background-repeat: no-repeat, repeat;
+    background-size: 110%;
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 100vh;
+  }
+  .div-card-login{
+
+   width: 350px;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    padding:30px 40px;
+    background-image: url('../../../assets/img/tarja.png');
+    background-repeat: no-repeat, repeat;
+    background-size: 100%;
+    @media (max-width: 767px) {
+      width: 90%;
+      padding:30px 20px;
+    }
+
+    .nav-logo{
+      width: 200px;
+      height: 70px;
+      margin: auto;
+      margin-top: 20px;
+      background-image: url('../../../assets/img/dunamis_logo02.png');
+      background-repeat: no-repeat, repeat;
+      background-size: 100%;
+      @media (max-width: 767px) {
+        margin-top: 70px;
+      }
+
+    }
+    h2{
+      text-align: center;
+      margin-top: 10px;
+      letter-spacing: 3px;
+      font-weight: bold;
+      color:#0c3263;
+      font-size: 25px;
+    }
+    h5{
+      margin-top: 10px;
+      @media (max-width: 767px) {
+        color:#e7e5e5;
+        margin-top: 30px;
+      }
+    }
+    .div-inputs{
+      width: 100%;
+      height: auto;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+.inpt{
+
+  width: 90%;
+  text-align: left !important;
+  margin: auto;
+  margin-top: 30px;
+  flex-direction: column;
+  label{
+    margin-bottom: 10px;
+    font-size: 12px !important;
+    color: #144F9E;
+  }
+}
+        .input-login{
+          width: 93%;
+          border: none;
+          font-size: 14px;
+          padding: 10px;
+          border-radius: 2px;
+          margin: auto;
+          text-align: center;
+          border: 1px solid #0c3263 !important;
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.9);
+        }
+        .input-login::selection {
+          background-color: #144F9E;
+          color: #ffffff
+      }
+
+
+      .btn-Login{
+        width: 90%;
+        font-size:14px;
+        font-weight: bold;
+        padding:16px;
+        margin-top: 30px;
+        cursor: pointer;
+        border:none;
+        border-radius: 5px;
+        background: linear-gradient(0deg, #144F9E 0%, #6199e2 100%);
+        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+
+        @media (max-width: 767px) {
+          background-color: #144F9E;
+          background: #144F9E ;
+        }
+      }
+      .btn-entrar:hover{
+        background:  linear-gradient(0deg, #ffa500 0%, #ffff00 100%);
+      }
+      @media (max-width: 767px) {
+      }
+    }
+  }
+}
+.nav-cad{
+
+  font-size: 16px;
+  padding: 15px;
+  right: 0;
+  width: 400px;
+  margin:auto;
+  text-align: center;
+  margin-top: 0px;
+  justify-content:space-between;
+  align-items: center !important;
+  span{
+    color:#144F9E;
+  }
+  .span-2{
+    margin-left: 5px;
+    text-decoration: none;
+    margin-left: 50px;
+  }
+  @media (max-width: 767px) {
+    width: 90%;
+  }
+ span:hover{
+  color:#000;
+ }
+}
+.nav-cad:hover{
+  span{
+    cursor: pointer;
+
+  }
+
+}
+.div-log
+{
+  @media (max-width: 767px) {
+    width: 100vw;
+  } display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end
+}
+
+.button-fixed-home{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+.button-home{
+  margin-top: 30px;
+}
+.link-home{
+  color:#326cb7;
+  margin-bottom: 0px !important;
+}
+@media (max-width: 767px) {
+  right: 20px;
+  .link-home{
+    margin-bottom: 0px !important;
+  }
+
+}
+}

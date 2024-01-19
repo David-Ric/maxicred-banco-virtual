@@ -1,0 +1,71 @@
+.banner-invest{
+  margin: auto;
+  margin-top: 20px;
+  width: 100%;
+  min-height: 610px;
+
+  background-image: url('../../../assets/img/banner-invest.png');
+  background-repeat: no-repeat, repeat;
+  background-size: 100%;
+
+  @media (max-width: 767px) {
+    width: 90vw;
+    height: 20vmax;
+    background-image: url('../../../assets/img/banner-invest-mobile.png');
+    min-height: 420px;
+  }
+}
+
+.div-invest-01{
+  margin-top: 10px;
+  padding: 30px;
+  width: 50%;
+  min-height: 200px;
+  h1{
+    font-size: 45px;
+    font-weight: bold;
+    color: #0d7dd8;
+    line-height: 1.2;
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+    min-height: 100px;
+    margin-top: 0px;
+    h1{
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+}
+.div-invest-02{
+  padding: 30px;
+  width: 40%;
+  .bloco{
+    width: 100%;
+  }
+  h1{
+    font-size: 25px;
+    font-weight: bold;
+  }
+  a{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  mat-icon{
+    font-size: 23px ;
+    font-weight: bold !important;
+    color:#820AD1 !important;
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+    padding-right: 0px;
+    padding-top: 10px;
+  }
+}
+
+.bloco-2{
+  margin-top: 30px;
+}
+
+

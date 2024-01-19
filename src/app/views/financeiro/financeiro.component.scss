@@ -1,0 +1,181 @@
+.div-cotacao{
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  //padding-bottom: 30px;
+  @media (max-width: 767px) {
+    width: 93%;
+    flex-direction: column;
+  }
+.barr-inf{
+  width: 100%;
+  height: 15px;
+  background-color: #111111;
+  margin-top: 25px;
+  @media (max-width: 767px) {
+    margin-top: 0px;
+  }
+}
+  .text-cot{
+    text-align: center;
+    width: 99%;
+    padding: 8px;
+    background-color: #111111;
+    color: #fff;
+    margin-bottom: 25px;
+    h1{
+      margin-bottom: 0px !important;
+
+    }
+    @media (max-width: 767px) {
+      width: 96%;
+    }
+  }
+  .div-card{
+    display:flex;
+    justify-content: space-between;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  .card-cotacao{
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+    .icon-dollar{
+      margin: auto;
+      width: 50px;
+      height: 50px;
+    }
+    .moeda{
+      font-size: 20px;
+    }
+    .valor{
+      font-size: 35px;
+      font-weight: bold;
+
+    }
+    .data{
+      font-size: 18px;
+
+    }
+    .div-valores{
+      margin: 10px;
+    }
+    @media (max-width: 767px) {
+     width: 95%;
+     margin-bottom: 25px;
+    }
+  }
+}
+}
+.div-saldo{
+  position: relative;
+  display: flex;
+  padding: 10px;
+  margin-top: 20px;
+  width: 40%;
+  @media (max-width: 767px) {
+    width: 94%;
+  }
+    h1{
+      margin: 0px !important;
+    }
+ // box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.9);
+ // border-radius: 5px;
+  .text-conta{
+    margin-right: 10px !important;
+  }
+  .valor-conta{
+
+    font-weight: bold;
+  }
+}
+.div-olho{
+  position: absolute;
+  right: 10px !important;
+  width: 30px;
+  height: 20px;
+  margin: auto;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.olho-ab{
+  background-image: url('../../../assets/img/olho-ab.png');
+  background-repeat: no-repeat, repeat;
+  background-size: 100%;
+}
+
+.olho-f{
+  margin-top: 15px !important;
+  height: 15px !important;
+  background-image: url('../../../assets/img/olho-f.png');
+  background-repeat: no-repeat, repeat;
+  background-size: 100%;
+}
+mat-accordion{
+width: 50% !important;
+@media (max-width: 767px) {
+  width: 80% !important;
+}
+}
+mat-expansion-panel-header{
+  height: 80px !important;
+}
+
+.painel-title{
+
+  flex-direction: column !important;
+  h3{
+    margin: 0px !important;
+  }
+}
+.valor-data{
+  margin-left: 10px !important;
+  h3{
+    font-weight: bold;
+  }
+
+}
+.title-parc{
+  width: 100%;
+  background-color: #4f4d4d;
+  padding: 5px;
+
+  h2{
+    margin: 0px !important;
+    color: #fff;
+  }
+}
+.parcela-paga{
+  justify-content: center !important;
+  text-align: center;
+  align-items: center !important;
+  background-color: #bef4be;
+}
+.card-parcela
+{
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.9);
+  width: 97%;
+  margin-top: 5px;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+
+  h3{
+    margin-bottom: 3px !important;
+  }
+}
+.card-parcela:hover{
+  background-color: #a6cdee;
+}

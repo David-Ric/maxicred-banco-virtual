@@ -1,0 +1,51 @@
+.form_card{
+  margin-top: 20px;
+.form_card_content{
+  margin-bottom: 20px;
+  width: 95%;
+  @media (max-width: 767px) {
+    margin-left: 5px;
+  }
+}
+@media (max-width: 767px) {
+  width: 90%;
+}
+}
+.inpt-UF{
+width: 10%;
+@media (max-width: 767px) {
+  width: 50% ;
+}
+}
+.inpt_lograd{
+width: 60%;
+@media (max-width: 767px) {
+  width: 100%;
+}
+}
+.div-interna{
+margin-left: 0px;
+margin-right: 0px;
+width: 97%;
+}
+.form-dados-sec{
+  width: 20%;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+.div-input{
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+.form-cpf{
+  position: relative;
+}
+.valida-cpf{
+  position: absolute;
+  top: -20px;
+  right: 0;
+  font-size: 11px;
+  color:#f44336;
+}

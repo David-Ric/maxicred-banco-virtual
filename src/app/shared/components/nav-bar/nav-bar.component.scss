@@ -1,0 +1,126 @@
+
+.sidenav-container {
+  height: 100%;
+}
+
+
+.sidenav {
+  width: 200px;
+  background-color: #144F9E;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: width 0.3s ease;
+
+  &.expanded {
+    width: 200px;
+  }
+
+}
+
+.nav-list {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  a {
+    width: 100%;
+    padding: 15px;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    mat-icon {
+      margin-right: 10px;
+    }
+  }
+  .custom-active {
+    color: yellow;
+  }
+
+  a:hover {
+    background-color: #0d3161;
+  }
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.toolbar-nav {
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 100px;
+  background-color: #1a66c8;
+  color: #fff !important;
+  .link-home {
+    color: #fff;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    padding-right: 20px;
+  }
+}
+.buton-nav{
+  background-color: #135fc3 !important;
+}
+.buton-nav:hover{
+  background-color: #1254aa !important;
+}
+.menu-logout{
+  width: 300px !important;
+}
+
+.text-menu{
+  color:#fff !important;
+}
+
+.logo-nav2{
+  margin-left: 40px;
+  @media (max-width: 767px) {
+    margin-left: 10px;
+  }
+}
+.logo-nav{
+  width: 500px;
+  @media (max-width: 767px) {
+   width: auto;
+  }
+}
+.nav-login
+{
+  cursor: pointer;
+  width: 100px;
+  position: relative;
+  mat-icon{
+    color: #fff !important;
+    margin-top: 10px;
+    @media (max-width: 767px) {
+      font-size: 20px !important;
+    }
+  }
+  span{
+    color: #fff !important;
+    margin-left: 5px;
+    position: absolute;
+    top:15px;
+    @media (max-width: 767px) {
+      font-size: 14px !important;
+      top:10px;
+      margin-left: 1px;
+    }
+  }
+  @media (max-width: 767px) {
+  width: 90px;
+  }
+
+}

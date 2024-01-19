@@ -1,0 +1,86 @@
+<app-nav-bar>
+  <div class="containner-app">
+     <div class="name-user" *ngIf="user">
+      <h1>Seja bem vindo, {{user.username}}!</h1>
+    </div>
+
+    <div *ngIf="user" class="div-saldo">
+      <div class="divvalore">
+        <div *ngIf="contaCorrente" class="d-flex">
+          <p>Agência: <b>{{ contaCorrente.agencia }} </b>  </p>
+          <p class="conta-corr">Conta Corrente: <b>{{ contaCorrente.conta }}</b></p>
+        </div>
+        <div class="d-flex">
+          <h1 class="text-conta">Saldo em conta: </h1>
+          <h1 *ngIf="contaCorrente && visualizar" class="valor-conta">
+            {{ contaCorrente ?
+              formatarValorConta(contaCorrente.saldo, contaCorrente.moeda || 'BRL') :
+              '0,00' }}
+          </h1>
+          <h1 *ngIf="!visualizar" class="valor-conta">******</h1>
+        </div>
+      </div>
+
+      <div class="div-olho" [class.olho-ab]="visualizar" [class.olho-f]="!visualizar" (click)="inverterVisualizacao()"></div>
+    </div>
+
+
+    <div class="d-flex">
+      <div class="banner-home"></div>
+      <div class="div-fin">
+        <div class="card div-card-fin" (click)="handleLogin()">
+
+          <span>Transparentes, seguros e do seu jeito. Opções de empréstimos que deixam você no controle do início ao fim.</span>
+
+        </div>
+        <div class="card div-card-inv" (click)="handleInvest()">
+
+          <span>Investimentos a partir de R$ 1 e opções para todos os perfis. Uma experiência fácil, segura e transparente.</span>
+
+        </div>
+      </div>
+    </div>
+    <div class="div-cotacao">
+      <div class="text-cot">
+        <h1>Cotação de Moedas</h1>
+      </div>
+
+      <div class="div-card">
+        <div *ngFor="let moeda of cotacao" class="card-cotacao">
+          <img *ngIf="moeda.name === 'Euro/Real Brasileiro'" src="../../../assets/img/euro-icon.png" alt="" class="icon-dollar">
+          <img *ngIf="moeda.name === 'Bitcoin/Real Brasileiro'" src="../../../assets/img/bitcoin-icon.png" alt="" class="icon-dollar">
+          <img *ngIf="moeda.name === 'Dólar Americano/Real Brasileiro'" src="../../../assets/img/dollar-icon.png" alt="" class="icon-dollar">
+          <div>
+            <div class="div-valores">
+              <span class="moeda">{{ transformarNome(moeda.name) }}</span>
+            </div>
+            <div class="div-valores">
+              <span class="valor">{{ formatarValor(moeda.bid) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div class="barr-inf"></div>
+    </div>
+    <div class="separador"></div>
+    <div *ngIf="showModal">
+      <app-modal-confirm [message]="modalMessage" [url]="modalUrl" (closeModal)="onCloseModal()"></app-modal-confirm>
+    </div>
+    <div *ngIf="(loading)">
+      <app-loading-modal></app-loading-modal>
+    </div>
+    <div *ngIf="showModalCard">
+      <app-modal-cad-cliente
+  [message]="modalMessage"
+  [url]="modalUrl"
+  (closeModal)="onCloseModal()"
+  (closeModalCard)="onCloseModalCard()">
+</app-modal-cad-cliente>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</app-nav-bar>
+
+

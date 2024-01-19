@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport *ngIf="user"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+
+      <mat-nav-list class="nav-list" >
+        <a [routerLink]="'/cadastro-cliente'" [class.custom-active]="isCurrentRoute('/cadastro-cliente')">
+          <mat-icon aria-hidden="false" aria-label="Ícone de usuário">person</mat-icon>
+          Meus Dados
+        </a>
+
+        <a [routerLink]="'/financeiro'" [class.custom-active]="isCurrentRoute('/financeiro')">
+          <mat-icon aria-hidden="false" aria-label="Ícone financeiro">account_balance_wallet</mat-icon>
+          Meu Financeiro
+        </a>
+
+
+      </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar  class="toolbar-nav">
+      <button *ngIf="user" class="buton-nav" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleSidenav()">
+        <mat-icon aria-label="Side nav toggle icon">
+          {{ (isHandset$ | async) ? 'menu' : (isMenuOpen ? 'close' : 'menu') }}
+        </mat-icon>
+      </button>
+      <div class="logo-nav" [ngClass]="user ? 'logo-nav' : 'logo-nav logo-nav2'">
+        <img src="../../../../assets/img/dunamis_logo02.png" alt="" width="100px">
+      </div>
+
+      <a [routerLink]="'/home'" class="link-home" *ngIf="!(isHandset$ | async)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+      </a>
+      <mat-nav-list class="nav-login" *ngIf="!user">
+        <a mat-list-item [routerLink]="'/login'">
+          <mat-icon>input</mat-icon>
+          <span>Entrar</span>
+        </a>
+      </mat-nav-list>
+      <mat-nav-list  *ngIf="user" class="nav-login" (click)="handleLogout()">
+        <mat-icon aria-hidden="false" aria-label="Icone de logout">exit_to_app</mat-icon>
+        <span>Logout</span>
+      </mat-nav-list>
+      <!-- <button *ngIf="user" mat-button [matMenuTriggerFor]="menu" class="text-menu">Perfil / Logout <mat-icon >arrow_drop_down</mat-icon></button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item>
+            <mat-icon aria-hidden="false" aria-label="Icone de usuário">account_circle</mat-icon>
+            Meu Perfil
+          </button>
+
+          <button mat-menu-item (click)="handleLogout()">
+            <mat-icon aria-hidden="false" aria-label="Icone de logout">exit_to_app</mat-icon>
+            Logout
+          </button>
+
+        </mat-menu> -->
+
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,98 @@
+<div class="container-login">
+  <div class="div-card"></div>
+  <div class="div-log">
+  <form [formGroup]="loginForm"
+  class="div-card-login"
+  *ngIf="login"
+  (ngSubmit)="onSubmitLoginForm()">
+
+    <div class="nav-logo"></div>
+      <h2>LOGIN</h2>
+    <div class="div-inputs">
+
+      <div class="inpt">
+        <label for="">Usuário</label>
+        <input class="input-login"
+        type="text"
+        placeholder="Usuario"
+        formControlName="username"
+        (input)="onUsernameInput($event)"
+        >
+      </div>
+      <div class="inpt">
+        <label for="">Senha</label>
+     <input class="input-login"
+     type="password"
+     placeholder="Senha"
+     formControlName="password"
+     >
+    </div>
+     <button type="submit"
+     class="btn-Login" [disabled]="!this.loginForm.valid" >
+     Entrar</button>
+
+    </div>
+  </form>
+  <form [formGroup]="registerForm"
+  class="div-card-login"
+  *ngIf="!login"
+  (ngSubmit)="onSubmitRegisterForm()">
+
+    <div class="nav-logo"></div>
+      <h2>REGISTRE-SE</h2>
+    <div class="div-inputs">
+      <div class="inpt">
+        <label for="">Usuário</label>
+        <input class="input-login"
+        type="text"
+        placeholder="Usuario"
+        formControlName="username"
+        (input)="onUsernameInput($event)"
+        >
+      </div>
+      <div class="inpt">
+        <label for="">email</label>
+        <input class="input-login"
+        type="text"
+        placeholder="Email"
+        formControlName="email"
+        >
+      </div>
+      <div class="inpt">
+        <label for="">Senha</label>
+        <input class="input-login"
+               [type]="mostrarSenha ? 'text' : 'password'"
+               placeholder="Senha"
+               formControlName="password">
+        <!-- <i class="toggle-icon" [ngClass]="{'fa-eye': mostrarSenha, 'fa-eye-slash': !mostrarSenha}" (click)="toggleMostrarSenha()"></i> -->
+      </div>
+
+     <button type="submit"
+     class="btn-Login" [disabled]="!this.registerForm.valid" >
+     Cadastrar</button>
+
+    </div>
+  </form>
+  <div class="nav-cad" >
+    <span (click)="loginUser()">{{ login ? 'Ainda não é nosso cliente? Cadastre-se!' : 'Efetuar login' }} </span>
+<div class="button-fixed-home">
+  <div class="example-button-container button-home">
+    <button mat-fab color="primary" aria-label="" (click)="handleHome()">
+      <mat-icon>home</mat-icon><br><br>
+    </button>
+  </div>
+  <h3 class="link-home">Home</h3>
+</div>
+
+   </div>
+
+    <!-- <h5>Versão: 2.1.00</h5> -->
+  </div>
+</div>
+<div *ngIf="(loading)">
+  <app-loading-modal></app-loading-modal>
+</div>
+<div *ngIf="showModal">
+  <app-modal-confirm [message]="modalMessage" (closeModal)="showModal = false"></app-modal-confirm>
+</div>
+
