@@ -51,7 +51,6 @@
                     <div>
                       <h3>vencimento em: {{ formatarData(parcela.dataVencimento) }}  </h3>
                       <h3>no valor de: <b>R$ {{ parcela.valorComJuros / 100 | number:'1.2-2' }}</b></h3>
-
                     </div>
                     <div>
                     <button mat-fab extended color="primary" (click)="atualizarStatus(parcela.id)">

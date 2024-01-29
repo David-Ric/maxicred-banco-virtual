@@ -115,25 +115,7 @@ export class FinanceiroComponent {
     console.log("dados dos emprestimos recebidos",this.emprestimos)
 
     this.getEmprestimoCliete(clienteId)
-    // this.emprestimoService.getEmprestimosByClienteId(clienteId, 1, 10)
-    // .subscribe((response: any) => {
-    //   const emprestimos: Emprestimo[] = response.emprestimos;
 
-    //   this.emprestimos = emprestimos.map(emprestimo => {
-
-    //     return emprestimo;
-    //   });
-
-    //   const primeiroEmprestimo = emprestimos[0];
-    //   if (primeiroEmprestimo) {
-
-    //     this.emprestimos=emprestimos;
-    //   }
-
-    //   this.loading = false;
-
-    //   console.log("emprestimo existente", this.emprestimos);
-    // });
 
    this.emprestimoId = localStorage.getItem('emprestimoId')||'';
 
@@ -178,7 +160,6 @@ export class FinanceiroComponent {
       () => {
         console.log('Status e DataPagamento atualizados com sucesso!');
 
-
       },
       (error) => {
         console.error('Erro ao atualizar status e data de pagamento:', error);
@@ -186,45 +167,56 @@ export class FinanceiroComponent {
       }
     );
     this.getParcelas(1, 4, '1');
+    this.getParcelas(1, 4, '1');
     this.loading = false;
     this.showModal = true;
     this.messageError = true;
     this.modalMessage = 'Pagamento efetuado com sucesso!';
     console.log('Atualizado com sucesso');
+
   }
+
 
   getParcelas(page = 1, pageSize = 4, status = '1') {
     this.loading = true;
 
-    this.parcelas$ = this.emprestimoService.getParcelasEmprestimoId(page, pageSize, status)
+    this.emprestimoService.getParcelasEmprestimoId(page, pageSize, status)
       .pipe(
         catchError(error => {
           console.error('Erro ao carregar parcelas:', error);
           this.loading = false;
+
           return throwError(error);
         }),
         map((response: any) => {
           console.log('Parcelas carregadas com sucesso:', response);
-          console.log("total de itens parcela",response.totalItems)
+          console.log("total de itens parcela", response.totalItems);
+
           if (this.paginator) {
             this.paginator.length = response.totalItems;
             this.cdr?.detectChanges();
           }
+
           this.pageIndex = page - 1;
           this.pageSize = pageSize;
           this.parcelas = response.parcelas;
-          return response;
-        }),
-        finalize(() => {
-          this.loading = false;
-          if(this.parcelas.length==0){
+
+
+          if (this.parcelas.length <= 0) {
             this.atualizarStatusEmprestimo(Number(this.emprestimoId));
           }
+        }),
+        finalize(() => {
 
+          this.loading = false;
         })
       )
+      .subscribe(
 
+      );
   }
+
+
 
 
   formatarValorConta(valor: number | undefined, moeda: string): string {
